@@ -1,6 +1,9 @@
-# Simple English to Yoruba Dictionary
+# Simple English to Yoruba Dictionarie 
+import streamlit as st
 
-dictionary = {
+st.title("Yoruba Dictionary")
+
+yoruba_dict = {
     "hello": "báwo",
     "good morning": "ẹ káàárọ̀",
     "good afternoon": "ẹ káàsán",
@@ -23,17 +26,11 @@ dictionary = {
     "sleep": "sùn"
 }
 
-print("English → Yoruba Dictionary")
-print("Type 'exit' to stop\n")
+word = st.text_input("Enter your word:").lower().strip()
 
-while True:
-    word = input("Enter an English word: ").lower()
-
-    if word == "exit":
-        print("Bye 👋")
-        break
-
-    if word in dictionary:
-        print("Yoruba:", dictionary[word])
-    else:
-        print("Word not found 😕")
+if st.button("Translate"):
+    if word:
+        if word in yoruba_dict:
+            st.success(f"Yoruba translation: **{yoruba_dict[word]}**")
+        else:
+            st.error("Word not found 😕")
